@@ -22,4 +22,8 @@ class User < ApplicationRecord
   def rejected
     Friendship.created_by(self).rejected
   end
+
+  def received_requests
+    User.joins(:friendships).merge(Friendship.sent_to(self).pending)
+  end
 end

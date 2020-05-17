@@ -5,4 +5,6 @@ class Friendship < ApplicationRecord
   scope :confirmed, -> { where('status=?', 'Accepted') }
   scope :pending, -> { where('status=?', 'Pending') }
   scope :rejected, -> { where('status=?', 'Rejected') }
+  scope :created_by, -> { where(user_id: user) }
+  scope :sent_to, -> { where(friend_id: user) }
 end
