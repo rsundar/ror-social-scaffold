@@ -9,5 +9,17 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :friendship, dependent: :destroy
+  has_many :friendships, dependent: :destroy
+  
+  def confirmed_friends
+    Friendship.created_by(self).confirmed
+  end
+
+  def pending
+    Friendship.created_by(self).pending
+  end
+
+  def rejected
+    Friendship.created_by(self).rejected
+  end
 end
