@@ -37,6 +37,16 @@ class FriendshipsController < ApplicationController
     redirect_to current_user
   end
 
+  def delete
+    if @user.friends.include?(@friend)
+      Friendship.breakup(@user, @friend)
+      flash[:notice] = "Friendship with #{@friend.name} deleted!"
+    else
+      flash[:notice] = "You aren't friends with #{@friend.name}"
+    end
+    redirect_to current_user
+  end
+
   private
 
     def setup_friends
