@@ -10,5 +10,14 @@ class Friendship < ApplicationRecord
     !Friendship.find_by_user_id_and_friend_id(user, friend).nil?
   end
 
-  
+  # Record a pending friend request.
+
+  def self.request(user, friend)
+    unless user == friend || Friendship.exists?(user, friend)
+      Friendship.transaction do
+        Friendship.create(user: user, friend: friend, status: 'pending')
+        Friendship.create(user: friend, friend: user, status: 'requested')
+      end
+    end
+  end
 end
