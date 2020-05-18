@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  helper FriendshipsHelper
   before_action :authenticate_user!
 
   def index
