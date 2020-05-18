@@ -27,6 +27,16 @@ class FriendshipsController < ApplicationController
     redirect_to current_user
   end
 
+  def cancel
+    if @user.pending_friends.include?(@friend)
+      Friendship.breakup(@user, @friend)
+      flash[:notice] = "Friendship request canceled."
+    else
+      flash[:notice] = "No request for friendship with #{@friend.name}"
+    end
+    redirect_to current_user
+  end
+
   private
 
     def setup_friends
