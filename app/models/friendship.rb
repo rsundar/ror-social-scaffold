@@ -31,6 +31,15 @@ class Friendship < ApplicationRecord
     end
   end
 
+  # Delete a friendship or cancel a pending request.
+
+  def self.breakup(user, friend)
+    Friendship.transaction do
+      Friendship.find_by_user_id_and_friend_id(user, friend).destroy
+      Friendship.find_by_user_id_and_friend_id(friend, user).destroy
+    end
+  end
+
   private
 
     # Update the database with one side of an accepted friendship request.
