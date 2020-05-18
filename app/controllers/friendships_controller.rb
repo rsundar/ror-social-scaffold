@@ -7,6 +7,16 @@ class FriendshipsController < ApplicationController
     redirect_to @friend
   end
 
+  def accept
+    if @user.requested_friends.include?(@friend)
+      Friendship.accept(@user, @friend)
+      flash[:notice] = "Friendship with #{@friend.name} accepted!"
+    else
+      flash[:notice] = "No friendship request from #{@friend.name}."
+    end
+    redirect_to current_user
+  end
+
   private
 
     def setup_friends
