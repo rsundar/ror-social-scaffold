@@ -1,6 +1,16 @@
 <%= render @user %>
 <div class="columns is-centered">
   <div class="column is-half">
+    <% if current_user == @user %>
+      <div class="content">
+        <article class="panel is-info">
+          <p class="panel-heading">
+            Friend Requests
+          </p>
+          <%= link_to 'See all', friend_requests_path, class: "is-link" %>
+        </article>
+      </div>
+    <% end %>
     <div class="content">
       <article class="panel is-info">
         <p class="panel-heading">
