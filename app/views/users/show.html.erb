@@ -7,7 +7,13 @@
           <p class="panel-heading">
             Friend Requests
           </p>
-          <%= link_to 'See all', friend_requests_path, class: "is-link" %>
+          <div class="panel-block">
+            <% if current_user.requested_friends.any? %>
+              You have <%= pluralize(current_user.requested_friends.count, 'request') %>, <%= link_to 'See all', friend_requests_path, class: "is-link" %>
+            <% else %>
+              No friend requests
+            <% end %>
+          </div>
         </article>
       </div>
     <% end %>
