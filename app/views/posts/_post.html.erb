@@ -15,6 +15,20 @@
           <small><span class="icon"><%= like_or_dislike_icon(post) %></span><%= like_or_dislike_btn(post) %> · <%= post.created_at.strftime("%Y/%m/%d at %I:%M %p") %></small>
         </p>
       </div>
+      <nav class="level is-mobile">
+        <div class="level-left">
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading"><%= pluralize(post.likes.count, 'like') %></p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading"><%= pluralize(post.comments.count, 'comment') %></p>
+            </div>
+          </div>
+        </div>
+      </nav>
       
       
       <% post.comments.each do |comment| %>
