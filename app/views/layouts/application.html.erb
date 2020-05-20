@@ -12,46 +12,49 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <nav class="navbar is-info">
-  		<div class="navbar-brand">
-  		<%= link_to root_path, class: "navbar-item" do %>
-  			<h1 class="title has-text-white-light has-text-weight-bold">Stay in touch!</h1>
-  		<% end %>
-      <%= link_to 'Timeline', posts_path, class: "navbar-item" %>
-      <%= link_to 'All users', users_path, class: "navbar-item" %>
-			<div class="navbar-burger burger" data-target="navbarExample">
-					<span></span>
-					<span></span>
-					<span></span>
-  		</div>
-  	 </div>
+    
+    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <%= link_to root_path, class: "navbar-item" do %>
+          <h1 class="title has-text-white-light has-text-weight-bold">Stay in touch!</h1>
+        <% end %>
 
-			<div id="navbarExample" class="navbar-menu">
-				<div class="navbar-end">
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <%= link_to 'Timeline', posts_path, class: "navbar-item" %>
+          <%= link_to 'All users', users_path, class: "navbar-item" %>
+        </div>
+
+        <div class="navbar-end">
           <div class="navbar-item">
-            <div class="field is-grouped">
-              
+            <div class="buttons">
               <% if user_signed_in? %>
-                <p class="control">
+                
                   <%= link_to current_user.name, current_user, class: "button is-link" %>
-                </p>
-                <p>
+                
+                
                   <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"button" %>
-                </p>
+                
               <% else %>
-              <p class="control">
-                <%= link_to 'Sign In', user_session_path, class: "button is-link" %>
-              </p>
-              <p class="control">
-                <%= link_to 'Sign Up', new_user_registration_path, class: "button is-link" %>
-              </p>
-              <% end %>
+              
+                <%= link_to 'Log In', user_session_path, class: "button is-success" %>
+              
 
+                <%= link_to 'Sign Up', new_user_registration_path, class: "button is-link" %>
+
+              <% end %>
             </div>
-					</div>
-				</div>
-			</div>
-  	</nav>
+          </div>
+        </div>
+      </div>
+    </nav>
 
     <% if notice.present? %>
       <div class="notification is-success is-light">
@@ -70,16 +73,6 @@
         <%= yield %>
       </div>
     </section>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-          $notification = $delete.parentNode;
-
-          $delete.addEventListener('click', () => {
-            $notification.parentNode.removeChild($notification);
-          });
-        });
-      });
-    </script>
+    
   </body>
 </html>
