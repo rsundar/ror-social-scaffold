@@ -12,7 +12,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    
     <nav class="navbar is-info" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <%= link_to root_path, class: "navbar-item" do %>
@@ -36,19 +35,11 @@
           <div class="navbar-item">
             <div class="buttons">
               <% if user_signed_in? %>
-                
                   <%= link_to current_user.name, current_user, class: "button is-link" %>
-                
-                
                   <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"button" %>
-                
               <% else %>
-              
                 <%= link_to 'Log In', user_session_path, class: "button is-success" %>
-              
-
                 <%= link_to 'Sign Up', new_user_registration_path, class: "button is-link" %>
-
               <% end %>
             </div>
           </div>
@@ -73,6 +64,5 @@
         <%= yield %>
       </div>
     </section>
-    
   </body>
 </html>
