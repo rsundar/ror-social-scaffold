@@ -2,20 +2,23 @@
 <div class="columns is-centered">
   <div class="column is-half">
     <% if current_user == @user %>
-      <div class="content">
+      
         <article class="panel is-info">
           <p class="panel-heading">
             Friend Requests
           </p>
           <div class="panel-block">
-            <% if current_user.requested_friends.any? %>
-              You have <%= pluralize(current_user.requested_friends.count, 'request') %>, <%= link_to 'See all', friend_requests_path, class: "is-link" %>
-            <% else %>
-              No friend requests
-            <% end %>
+            <div class="content">
+              <% if current_user.requested_friends.any? %>
+              <p class="title is-5"> You have <%= pluralize(current_user.requested_friends.count, 'request') %> </p>
+              <p class="title is-5"><%= link_to 'See all', friend_requests_path, class: "is-link" %></p>
+              <% else %>
+                <p class="title is-5">No friend requests</p>
+              <% end %>
+            </div>
           </div>
         </article>
-      </div>
+      
     <% end %>
     <div class="content">
       <article class="panel is-info">

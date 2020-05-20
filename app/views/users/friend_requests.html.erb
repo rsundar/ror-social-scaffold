@@ -1,10 +1,15 @@
-<div class="content">
-  <article class="panel is-info">
-    <p class="panel-heading">
-      Friend Requests
-    </p>
-  </article>
+<div class="columns is-centered">
+  <div class="column is-half">
+    <div class="content">
+      <article class="panel is-info">
+        <p class="panel-heading">
+          Friend Requests
+        </p>
+      </article>
+    </div>
+  </div>
 </div>
+
 <% @friend_requests.each do |friend| %>
   <%= render friend %>
 <% end %>
