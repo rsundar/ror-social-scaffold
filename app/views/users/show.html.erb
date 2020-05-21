@@ -2,16 +2,16 @@
   <h2><%= "Name: #{@user.name}" %></h2>
   <% unless current_user == @user %>
     <% unless Friendship.exists?(current_user, @user) %><br />
-        <%= button_to "Send friend request", friendships_path, params: { id: user.id }, method: :post, class: ' btn-primary' %>
+        <%= button_to "Send friend request", friendships_path, params: { id: @user.id }, method: :post, class: ' btn-primary' %>
     <% end %>
     <% if Friendship.exists?(current_user, @user) %>
       <% if friendship_requested?(current_user, @user) %>
-          <%= button_to "Confirm friendship", accept_path, params: { id: user.id }, method: :patch, class: '  btn-primary' %>
-          <%= button_to "Decline friendship", decline_path, params: { id: user.id }, method: :delete, class: '  btn-primary' %>
+          <%= button_to "Confirm friendship", accept_path, params: { id: @user.id }, method: :patch, class: '  btn-primary' %>
+          <%= button_to "Decline friendship", decline_path, params: { id: @user.id }, method: :delete, class: '  btn-primary' %>
       <% elsif friendship_pending?(current_user, @user) %>
-          <%= button_to "Cancel friend request", cancel_path, params: { id: user.id }, method: :delete, class: '  btn-primary' %>
+          <%= button_to "Cancel friend request", cancel_path, params: { id: @user.id }, method: :delete, class: '  btn-primary' %>
       <% else %>
-          <%= button_to "Remove friendship", delete_path, params: { id: user.id }, method: :delete, class: ' btn-primary' %>
+          <%= button_to "Remove friendship", delete_path, params: { id: @user.id }, method: :delete, class: ' btn-primary' %>
       <% end %>
     <% end %>
   <% end %>

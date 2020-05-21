@@ -19,7 +19,7 @@ class FriendshipsController < ApplicationController
 
   def decline
     if @user.requested_friends.include?(@friend)
-      Friendship.breakup(@user, @friend)
+      Friendship.break_up(@user, @friend)
       flash[:notice] = "Friendship with #{@friend.name} declined"
     else
       flash[:notice] = "No friendship request from #{@friend.name}."
@@ -29,7 +29,7 @@ class FriendshipsController < ApplicationController
 
   def cancel
     if @user.pending_friends.include?(@friend)
-      Friendship.breakup(@user, @friend)
+      Friendship.break_up(@user, @friend)
       flash[:notice] = "Friendship request canceled."
     else
       flash[:notice] = "No request for friendship with #{@friend.name}"
@@ -39,7 +39,7 @@ class FriendshipsController < ApplicationController
 
   def delete
     if @user.friends.include?(@friend)
-      Friendship.breakup(@user, @friend)
+      Friendship.break_up(@user, @friend)
       flash[:notice] = "Friendship with #{@friend.name} deleted!"
     else
       flash[:notice] = "You aren't friends with #{@friend.name}"
