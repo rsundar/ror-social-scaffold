@@ -17,6 +17,14 @@ class Friendship < ApplicationRecord
         end
     end
 
+    def self.accept(user, friend)
+        Friendship.transaction do
+            accepted_at = Time.now
+            accept_one_side(user, friend, accepted_at)
+            accept_one_side(friend, user, accepted_at)
+        end
+    end
+
     private
     
     def self.accept_one_side(user, friend, accepted_at)
