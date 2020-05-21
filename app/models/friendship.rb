@@ -25,6 +25,13 @@ class Friendship < ApplicationRecord
         end
     end
 
+    def self.break_up(user, friend)
+      Friendship.transaction do
+        Friendship.find_by_user_id_and_friend_id(user, friend).destroy
+        Friendship.find_by_user_id_and_friend_id(friend, user).destroy
+      end
+    end
+    
     private
     
     def self.accept_one_side(user, friend, accepted_at)
