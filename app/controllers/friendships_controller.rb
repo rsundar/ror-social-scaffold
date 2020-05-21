@@ -14,7 +14,17 @@ class FriendshipsController < ApplicationController
     else
       flash[:notice] = "No friendship request from #{@friend.name}."
     end
-    redirect_to current_user
+    redirect_to root_path
+  end
+
+  def decline
+    if @user.requested_friends.include?(@friend)
+      Friendship.breakup(@user, @friend)
+      flash[:notice] = "Friendship with #{@friend.name} declined"
+    else
+      flash[:notice] = "No friendship request from #{@friend.name}."
+    end
+    redirect_to root_path
   end
 
   private
