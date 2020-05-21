@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   end
 
   resources :friendships, only: [:create]
+  patch 'accept', to: 'friendships#accept', as: :accept
+  delete 'decline', to: 'friendships#decline', as: :decline
+  delete 'cancel', to: 'friendships#cancel', as: :cancel
+  delete 'delete', to: 'friendships#delete', as: :delete
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -44,7 +44,7 @@ class FriendshipsController < ApplicationController
     else
       flash[:notice] = "You aren't friends with #{@friend.name}"
     end
-    redirect_to current_user
+    redirect_to root_path
   end
 
   private
