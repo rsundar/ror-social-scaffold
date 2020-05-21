@@ -2,7 +2,10 @@ class FriendshipController < ApplicationController
   before_action :setup
   
   def create
-
+    Friendship.transaction do
+      
+      
+    end
   end
 
   def update
