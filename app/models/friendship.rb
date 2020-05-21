@@ -31,7 +31,7 @@ class Friendship < ApplicationRecord
         Friendship.find_by_user_id_and_friend_id(friend, user).destroy
       end
     end
-    
+
     private
     
     def self.accept_one_side(user, friend, accepted_at)
