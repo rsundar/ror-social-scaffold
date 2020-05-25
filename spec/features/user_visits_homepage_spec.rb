@@ -8,7 +8,7 @@ feature "user visits homepage" do
   end
 
   scenario "signed_in user visits homepage" do
-    user = User.create!(name: 'test', :email => 'test2@example.com', :password => 'f4k3p455w0rd')
+    user = User.create!(name: 'test3', :email => 'test3@example.com', :password => 'f4k3p455w0rd')
     login_as(user, :scope => :user)
     visit root_path
 
