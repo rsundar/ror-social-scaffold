@@ -1,6 +1,6 @@
 require 'capybara/rspec'
 
-#...
+# DataBase cleaner configuration
 
 RSpec.configure do |config|
 
