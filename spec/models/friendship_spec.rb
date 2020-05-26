@@ -31,5 +31,25 @@ RSpec.describe Friendship, type: :model do
     end
   end
 
+  describe ".accept" do
+    before(:each) do
+      Friendship.request(@user, @friend)
+      Friendship.accept(@user, @friend)
+      @friendship1 = Friendship.find_by_user_id_and_friend_id(@user, @friend)
+      @friendship2 = Friendship.find_by_user_id_and_friend_id(@friend, @user)
+    end
+    
+    it "updates the status attribute of a pending friendship to 'accepted'" do
+
+      expect(@friendship1.status).to eq "accepted"      
+    end
+
+    it "updates the status attribute of a requested friendship to 'accepted'" do
+
+      expect(@friendship2.status).to eq "accepted"      
+    end
+
+  end
+
   
 end
