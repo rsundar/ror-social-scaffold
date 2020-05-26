@@ -7,13 +7,29 @@ RSpec.describe Friendship, type: :model do
   end
   
 
-  describe "#request" do
-    it "creates two records for a mutual friendship" do
+  describe ".request" do
+    before(:each) do 
       Friendship.request(@user, @friend)
-      friendship_pending = Friendship.exists?(@user, @friend)
-      friendship_requested = Friendship.exists?(@friend, @user)
+      @pending_friendship = Friendship.find_by_user_id_and_friend_id(@user, @friend)
+      @requested_friendship = Friendship.find_by_user_id_and_friend_id(@friend, @user)
+    end 
+    
+    it "creates 2 records in db for mutual friendship" do
+  
+      expect(@pending_friendship).not_to be nil
+      expect(@requested_friendship).not_to be nil     
+    end
 
-      expect(friendship_pending && friendship_requested).to be(true)
+    it "set status attribute of one record to 'pending' " do
+
+      expect(@pending_friendship.status).to eq "pending"
+    end
+
+    it "set status attribute of one record to 'requested' " do
+
+      expect(@requested_friendship.status).to eq "requested"
     end
   end
+
+  
 end
