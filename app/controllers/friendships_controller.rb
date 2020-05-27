@@ -30,7 +30,7 @@ class FriendshipsController < ApplicationController
   def cancel
     if @user.pending_friends.include?(@friend)
       Friendship.break_up(@user, @friend)
-      flash[:notice] = "Friendship request canceled."
+      flash[:notice] = 'Friendship request canceled.'
     else
       flash[:notice] = "No request for friendship with #{@friend.name}"
     end
