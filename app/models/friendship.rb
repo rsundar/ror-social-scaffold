@@ -13,7 +13,6 @@ class Friendship < ApplicationRecord
       Friendship.create(user: user, friend: friend, status: 'pending')
       Friendship.create(user: friend, friend: user, status: 'requested')
     end
-    end
   end
 
   def self.accept(user, friend)
