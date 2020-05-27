@@ -1,7 +1,6 @@
 class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: 'User', foreign_key: :friend_id
-  
   validates_presence_of :user_id, :friend_id
 
   def self.exists?(user, friend)
@@ -31,8 +30,6 @@ class Friendship < ApplicationRecord
       Friendship.find_by_user_id_and_friend_id(friend, user).destroy
     end
   end
-
-  protected
 
   def self.accept_one_side(user, friend, accepted_at)
     request = find_by_user_id_and_friend_id(user, friend)
