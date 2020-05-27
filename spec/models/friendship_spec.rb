@@ -51,14 +51,12 @@ RSpec.describe Friendship, type: :model do
   end
 
   describe ".break_up" do
-    before(:each) do
+    it "destroys 2 friendship records in db" do
       Friendship.request(@user, @friend)
       Friendship.break_up(@user, @friend)
       @friendship1 = Friendship.find_by_user_id_and_friend_id(@user, @friend)
       @friendship2 = Friendship.find_by_user_id_and_friend_id(@friend, @user)
-    end
-
-    it "destroys 2 friendship records in db" do
+      
       expect(@friendship1).to be nil
       expect(@friendship2).to be nil
     end
