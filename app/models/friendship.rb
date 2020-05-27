@@ -8,11 +8,11 @@ class Friendship < ApplicationRecord
   end
 
   def self.request(user, friend)
-    unless user == friend || Friendship.exists?(user, friend)
-      Friendship.transaction do
-        Friendship.create(user: user, friend: friend, status: 'pending')
-        Friendship.create(user: friend, friend: user, status: 'requested')
-      end
+    return if user == friend || Friendship.exists?(user, friend)
+    Friendship.transaction do
+      Friendship.create(user: user, friend: friend, status: 'pending')
+      Friendship.create(user: friend, friend: user, status: 'requested')
+    end
     end
   end
 
