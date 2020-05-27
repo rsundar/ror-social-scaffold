@@ -9,7 +9,7 @@ class Friendship < ApplicationRecord
 
   def self.request(user, friend)
     return if user == friend || Friendship.exists?(user, friend)
-    
+
     Friendship.transaction do
       Friendship.create(user: user, friend: friend, status: 'pending')
       Friendship.create(user: friend, friend: user, status: 'requested')
