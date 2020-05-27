@@ -49,8 +49,8 @@ class FriendshipsController < ApplicationController
 
   private
 
-    def setup_friends
-      @user = current_user
-      @friend = User.find(params[:id])
-    end
+  def setup_friends
+    @user = current_user
+    @friend = User.find(params[:id])
+  end
 end
