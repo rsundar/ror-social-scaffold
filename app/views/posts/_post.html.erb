@@ -13,6 +13,7 @@
   </p>
 
   <div class='post-comments-section'>
+    <p> Comment Count: <%= post.comments.count %></p>
     <% post.comments.each do |comment| %>
       <div class="post-comments">
         <p>
