@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
-    @posts = @user.posts.own_and_friends_of(@user).ordered_by_most_recent
+    @user = User.find(params[:id])
+    @posts = @user.posts.ordered_by_most_recent.includes(:user)
   end
 end
