@@ -21,4 +21,14 @@ feature "user signs up" do
     expect(page).to have_content "Email is invalid"
   end
 
+  scenario "user enters invalid password" do
+    visit new_user_registration_path
+    fill_in "Name", with: "Test User"
+    fill_in "Email", with: "test@example.com"
+    fill_in "Password", with: "12345"
+    fill_in "Password confirmation", with: "12345"
+    click_on "Sign up"
+    expect(page).to have_content "Password is too short (minimum is 6 characters)"
+  end
+
 end
