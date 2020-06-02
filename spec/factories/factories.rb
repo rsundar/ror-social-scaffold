@@ -7,3 +7,15 @@ FactoryBot.define do
     password { Faker::Internet.password(min_length: 6) }
   end
 end
+
+FactoryBot.define do
+  factory :post do
+    user
+    content { Faker::Quote.matz }
+    created_at { Time.zone.now }
+
+    trait :old do
+      created_at { Time.zone.now - rand(365).days }
+    end
+  end
+end
