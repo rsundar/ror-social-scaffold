@@ -20,10 +20,8 @@ class PostsController < ApplicationController
   private
 
   def timeline_posts
-    @timeline_posts ||= current_user.posts.ordered_by_most_recent
-    unless current_user.friends.empty?
-      @timeline_posts += current_user.friends_posts.ordered_by_most_recent
-    end
+    @user = current_user
+    @timeline_posts ||= Post.own_and_friends_of(@user).ordered_by_most_recent
   end
 
   def post_params
