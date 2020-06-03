@@ -17,6 +17,13 @@ RSpec.describe User, type: :model do
         expect(user.pending_friends.include?(friend)).to be true
       end
     end
+
+    describe ":requested_friends scope" do
+      it "includes friends that have requested friendship status" do
+        Friendship.request(user, friend)
+        expect(friend.requested_friends.include?(user)).to be true
+      end
+    end
   end
 
 end
