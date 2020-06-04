@@ -19,3 +19,12 @@ FactoryBot.define do
     end
   end
 end
+
+FactoryBot.define do
+  factory :comment do
+    user
+    post
+    content { Faker::Quote.matz }
+    created_at { Time.zone.now }
+  end
+end
