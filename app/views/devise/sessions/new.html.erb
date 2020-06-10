@@ -1,6 +1,10 @@
-<div class="columns is-centered">
+<div class="columns ">
+  <div class="column is-8">
+    <figure class="image is-16by9">
+      <%= image_tag("background.svg") %>
+    </figure>
+  </div>
   <div class="column is-4">
-    
     <h2 class="title is-2">Log in</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
