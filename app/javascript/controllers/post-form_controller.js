@@ -17,7 +17,8 @@ export default class extends Controller {
   
       if (count > 900) {
         this.characterCountTarget.classList.remove("has-text-success")
-        this.characterCountTarget.classList.add("has-text-weight-bold has-text-danger")
+        this.characterCountTarget.classList.add("has-text-weight-bold")
+        this.characterCountTarget.classList.add("has-text-danger")
       } 
       else {
         this.characterCountTarget.classList.add("has-text-success")
