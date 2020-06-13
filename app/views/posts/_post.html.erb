@@ -64,8 +64,9 @@
       <%= form_for(post.comments.new, url: post_comments_path(post)) do |form| %>
 
         <div class="field">
-          <p class="control">
-            <%= form.text_area :content, id: :comment_content, class: 'textarea', placeholder: 'Add a comment...' %>
+          <p class="control" data-controller="post-form" data-post-form-maximum="200">
+            <%= form.text_area :content, id: :comment_content, class: 'textarea', placeholder: 'Add a comment...', data: { target: "post-form.body", action: "keyup->post-form#update" } %>
+            <progress class="progress is-small" style="margin-top:0.5rem" data-target="post-form.characterCount" value="" max="200"></progress>
           </p>
         </div>
         <div class="field">
