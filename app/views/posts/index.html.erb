@@ -13,7 +13,7 @@
               <div class="control" data-controller="post-form">
                 <%= form.label :content, 'Create Post', class: "label" %>
                 <%= form.text_area :content, id: :post_content, class: 'textarea', placeholder: "What's on your mind?...", data: { target: "post-form.body", action: "keyup->post-form#update" } %>
-                <span data-target="post-form.characterCount"></span>
+                <progress class="progress is-small" style="margin-top:0.5rem" data-target="post-form.characterCount" value="" max="1000"></progress>
               </div>
             </div>
             <% if @post.errors.full_messages.any? %>

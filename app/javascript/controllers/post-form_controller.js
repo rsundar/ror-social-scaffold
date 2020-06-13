@@ -10,18 +10,18 @@ export default class extends Controller {
     update() {
       var count = this.bodyTarget.value.length
       
-      var message = `${count} characters`
+      var message = `${count}%`
       
-  
+      this.characterCountTarget.value = `${count}`
       this.characterCountTarget.textContent = message
   
       if (count > 900) {
-        this.characterCountTarget.classList.remove("has-text-success")
-        this.characterCountTarget.classList.add("has-text-weight-bold")
-        this.characterCountTarget.classList.add("has-text-danger")
+        this.characterCountTarget.classList.remove("is-success")
+        this.characterCountTarget.classList.add("is-danger")
       } 
       else {
-        this.characterCountTarget.classList.add("has-text-success")
+        this.characterCountTarget.classList.remove("is-danger")
+        this.characterCountTarget.classList.add("is-success")
       }
     }
   
