@@ -1,9 +1,40 @@
-<section class="user-section">
-  <%= render @user %>
-  <article class="timeline">
-    <h3>Recent posts:</h3>
-    <ul class="posts">
-      <%= render @posts %>
-    </ul>
-  </article>
-</section>
+<%= render @user %>
+<div class="columns is-centered">
+  <div class="column is-half">
+    <% if current_user == @user %>
+      
+        <article class="panel is-info">
+          <p class="panel-heading">
+            Friend Requests
+          </p>
+          <div class="panel-block">
+            <div class="content">
+              <% if current_user.requested_friends.any? %>
+              <p class="title is-5"> You have <%= pluralize(current_user.requested_friends.count, 'request') %> </p>
+              <p class="title is-5"><%= link_to 'See all', friend_requests_path, class: "is-link" %></p>
+              <% else %>
+                <p class="title is-5">No friend requests</p>
+              <% end %>
+            </div>
+          </div>
+        </article>
+      
+    <% end %>
+    <div class="content">
+      <article class="panel is-info">
+        <p class="panel-heading">
+          Recent Posts
+        </p>
+        <div class="panel-block">
+          <p class="control has-icons-left">
+            <input class="input is-primary" type="text" placeholder="Search by date">
+            <span class="icon is-left">
+              <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+          </p>
+        </div>
+      </article>
+    </div>
+    <%= render @posts %>
+  </div>
+</div>
