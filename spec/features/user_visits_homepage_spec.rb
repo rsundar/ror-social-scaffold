@@ -12,6 +12,6 @@ feature "user visits homepage" do
     login_as(user, :scope => :user)
     visit root_path
 
-    expect(page).to have_css 'h3', text: 'Recent posts'
+    expect(page).to have_css 'p', text: 'Recent Posts'
   end
 end

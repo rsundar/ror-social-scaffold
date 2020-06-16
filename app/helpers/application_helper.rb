@@ -15,4 +15,13 @@ module ApplicationHelper
       link_to('Like!', post_likes_path(post_id: post.id), method: :post)
     end
   end
+
+  def like_or_dislike_icon(post)
+    like = Like.find_by(post: post, user: current_user)
+    if like
+      content_tag(:i, '', class: "far fa-thumbs-down")
+    else
+      content_tag(:i, '', class: "far fa-thumbs-up")
+    end
+  end
 end
