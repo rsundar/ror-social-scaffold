@@ -1,6 +1,8 @@
-# Scaffold for social media app with Ruby on Rails
+# Stay in Touch!
 
-> This repo includes intial code for social media app with basic styling. Its purpose is to be a starting point for Microverse students.
+> Stay in Touch! is a social media app built with Ruby on Rails. Users can send friendship invitations to other users, create, like and comment posts.
+
+![screenshot](./docs/stay_in_touch.png)
 
 ## Built With
 
@@ -9,7 +11,7 @@
 
 ## Live Demo
 
-TBA
+[StayInTouch](https://stayintouchsocial.herokuapp.com/users/sign_in)
 
 
 ## Getting Started
@@ -24,6 +26,12 @@ Postgres: >=9.5
 
 ### Setup
 
+> Run the following command in your terminal to get a local copy of the repo on your local machine.
+
+```bash
+  $ git clone https://github.com/rsundar/ror-social-scaffold.git
+```
+
 Instal gems with:
 
 ```
@@ -36,8 +44,6 @@ Setup database with:
    rails db:create
    rails db:migrate
 ```
-
-
 
 ### Usage
 
@@ -55,15 +61,40 @@ Open `http://localhost:3000/` in your browser.
     rpsec --format documentation
 ```
 
-> Tests will be added by Microverse students. There are no tests for initial features in order to make sure that students write all tests from scratch.
-
 ### Deployment
 
-TBA
+Before you deploy to heroku you need to delete the `credentials.yml.enc` file and run 
+`EDITOR="vi" rails credentials:edit`. Take the long encrypted key out and add it as a 
+configuration variable with the key 'SECRET_KEY_BASE' to Heroku in the settings tab. 
+Also make the following change to the file and save it:
+
+```
+    secret_key_base = <%= ENV['SECRET_KEY_BASE'] %>
+```
+
+You need to have the heroku postgres add on installed and the heroku ruby buildpack 
+installed. 
+
+Once you have completed the steps above you can deploy to heroku with the command:
+``` $git push heroku master ```
+If you run into any pre-compilation errors just pre-compile the app locally and then deploy.
+
+Once the application is deployed you need to migrate the database with the following command:
+``` $heroku run rails db:migrate ```
 
 ## Authors
 
-TBA
+👤 **Rohan Sundar**
+
+- Github: [@rsundar](https://github.com/rsundar)
+- Twitter: [@skelegrow](https://twitter.com/)
+- Linkedin: [linkedin](https://linkedin.com/)
+
+👤 **Mario Barrios**
+
+- Github: [@mariobarrioss](https://github.com/mariobarrioss)
+- Twitter: [@mario_barrioss](https://twitter.com/)
+- Linkedin: [linkedin](https://linkedin.com/)
 
 ## 🤝 Contributing
 
@@ -75,11 +106,6 @@ Feel free to check the [issues page](issues/).
 
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
-
-TBA
-
 ## 📝 License
 
-TBA
-
+This project is [MIT](https://github.com/rsundar/ror-social-scaffold/LICENSE) licensed.

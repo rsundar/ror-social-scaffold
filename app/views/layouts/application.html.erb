@@ -1,41 +1,74 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RorSocialScaffold</title>
+    <title>StayInTouch!</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" data-mutate-approach="sync"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'%>
   </head>
-  <body>
-    <nav class="nav">
-      <%= link_to 'Stay in touch', root_path %>
-      <div class="menu">
-        <div class="menu-item">
-          <%= menu_link_to 'Timeline', posts_path %>
+  <body class="has-background-light">
+    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <%= link_to root_path, class: "navbar-item" do %>
+          <h1 class="title has-text-white-light has-text-weight-bold">Stay in Touch!</h1>
+        <% end %>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <% if user_signed_in? %>
+            <%= link_to 'Timeline', posts_path, class: "navbar-item" %>
+            <%= link_to 'All users', users_path, class: "navbar-item" %>
+          <% else %>
+            <span hidden="true"></span>
+            <span hidden="true"></span>
+          <% end %>
         </div>
-        <div class="menu-item">
-          <%= menu_link_to 'All users', users_path %>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <% if user_signed_in? %>
+                  <%= link_to current_user.name, current_user, class: "button is-link" %>
+                  <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"button is-danger is-focused" %>
+              <% else %>
+                <%= link_to 'Log In', user_session_path, class: "button is-success" %>
+                <%= link_to 'Sign Up', new_user_registration_path, class: "button is-warning is-focused" %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
-      <% if current_user %>
-        <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Sign in', user_session_path %>
-      <% end %>
     </nav>
+
     <% if notice.present? %>
-      <div class="notice">
+      <div class="notification is-success is-light">
+        <button class="delete"></button>
         <p> <%= notice %> </p>
       </div>
     <% end %>
     <% if alert.present? %>
-      <div class="alert">
+      <div class="notification is-danger is-light">
+        <button class="delete"></button>
         <p> <%= alert %> </p>
       </div>
     <% end %>
-    <main class="main">
-      <%= yield %>
-    </main>
+    <section class="section">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </section>
   </body>
 </html>
