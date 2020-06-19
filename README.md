@@ -2,6 +2,8 @@
 
 > This repo includes intial code for social media app with basic styling. Its purpose is to be a starting point for Microverse students.
 
+![screenshot](./docs/stay_in_touch.png)
+
 ## Built With
 
 - Ruby v2.7.0
@@ -23,6 +25,12 @@ Rails: 5.2.3
 Postgres: >=9.5
 
 ### Setup
+
+> Run the following command in your terminal to get a local copy of the repo on your local machine.
+
+```bash
+  $ git clone https://github.com/rsundar/ror-social-scaffold.git
+```
 
 Instal gems with:
 
@@ -63,7 +71,17 @@ TBA
 
 ## Authors
 
-TBA
+👤 **Rohan Sundar**
+
+- Github: [@rsundar](https://github.com/rsundar)
+- Twitter: [@skelegrow](https://twitter.com/)
+- Linkedin: [linkedin](https://linkedin.com/)
+
+👤 **Mario Barrios**
+
+- Github: [@mariobarrioss](https://github.com/mariobarrioss)
+- Twitter: [@twitterhandle](https://twitter.com/)
+- Linkedin: [linkedin](https://linkedin.com/)
 
 ## 🤝 Contributing
 
