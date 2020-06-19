@@ -7,10 +7,10 @@
             <%= gravatar_image_tag(current_user.name, size: 64, alt: current_user.email, class: "is-rounded") %>
           </p>
         </figure>
-        <div class="media-content">
+        <div class="media-content" data-controller="post-form" data-post-form-maximum="1000">
           <%= form_for(@post) do |form| %>
             <div class="field">
-              <div class="control" data-controller="post-form" data-post-form-maximum="1000">
+              <div class="control">
                 <%= form.label :content, 'Create Post', class: "label" %>
                 <%= form.text_area :content, id: :post_content, class: 'textarea', placeholder: "What's on your mind?...", data: { target: "post-form.body", action: "keyup->post-form#update" } %>
                 <progress class="progress is-small" style="margin-top:0.5rem" data-target="post-form.characterCount" value="" max="1000"></progress>
@@ -24,7 +24,7 @@
 
             <div class="field">
               <div class="control">
-                <%= form.submit 'Save', class: 'button is-success' %>
+                <%= form.submit 'Save', class: 'button is-success', data: { target: "post-form.body", action: "click->post-form#submit"} %>
               </div>
             </div>
           <% end %>
